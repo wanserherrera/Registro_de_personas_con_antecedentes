@@ -1,0 +1,84 @@
+{% extends '../../layout.html' %}
+
+{% block title %} Añade documento {% endblock %}
+
+{% block content %}
+
+<!-- {{form.as_p}} -->
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="card p-3">
+            <h3 class="title-card">Ingrese los datos del documentooo</h3>
+            <div class="card-body">
+
+
+           
+               
+
+                <form class="row g-3 needs-validation"  enctype="multipart/form-data" method="POST" id="indexform"
+                 >{% csrf_token %}
+                   
+                     <div class="form-floating mb-3">
+                        <select name="idtipoorganizacion" placeholder="id rol"  class="form-select">
+                            {% for i in tipoorgpolitica %}  
+                            <option value="{{i.id}}" {% if  i.id  is filiacionpolitica.idtipoorganizacion.id %}selected {% endif %}>{{i.organizacion}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingInput">organizacion politica</label>
+                    </div>
+                     
+                    
+                <div class="form-floating mb-3">
+                    <input type="text" min="1" name="organizacion" maxlength="300" class="form-control"  id="floatingInput" {%if form.organizacion.value%} value="{{form.organizacion.value}}" {%endif%} placeholder="common">
+                    <label for="floatingInput">Organización</label>
+                </div> 
+                <div class="form-floating mb-3">
+                    <input type="text" min="1" name="tintepolitico" maxlength="300" class="form-control"  id="floatingInput" {%if form.tintepolitico.value%} value="{{form.tintepolitico.value}}" {%endif%} placeholder="common">
+                    <label for="floatingInput">Tinte político</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" min="1" name="cargoocupa" maxlength="300" class="form-control"  id="floatingInput" {%if form.cargoocupa.value%} value="{{form.cargoocupa.value}}" {%endif%} placeholder="common">
+                    <label for="floatingInput">Cargo que ocupa</label>
+                </div>  
+                <!-- TODO: a qué se refiere con anio (año) -->
+                <div class="form-floating mb-3">
+                    <input type="text" min="1" name="anio" maxlength="300" class="form-control"  id="floatingInput" {%if form.anio.value%} value="{{form.anio.value}}" {%endif%} placeholder="common">
+                    <label for="floatingInput">Año</label>
+                </div>  
+                <!-- TODO: fecha de qué -->
+                <div class="form-floating mb-3">
+                    <input type="datetime-local"  name="fecha"  class="form-control"  id="floatingInput" {%if form.fecha.value%} value="{{form.fecha.value|date:'Y-m-d H:i:s'}}" {%endif%} placeholder="common">
+                    <label for="floatingInput">Fecha</label>
+                </div>  
+                <div class="form-floating mb-3">
+                    <input type="text" min="1" name="tipo" maxlength="300" class="form-control"  id="floatingInput" {%if form.tipo.value%} value="{{form.tipo.value}}" {%endif%} placeholder="common">
+                    <label for="floatingInput">Tipo</label>
+                </div> 
+                <div class="form-floating mb-3">
+                    <textarea name="obs" cols="40" rows="10" class="form-control" id="floatingInput" placeholder="common">{%if form.obs.value%} {{form.obs.value}} {%endif%}</textarea>
+                    <label for="floatingInput">Observaciones </label>
+                </div> 
+                <div class="form-floating mb-3">
+                    <input type="text" name="archivo" maxlength="300" class="form-control" id="floatingInput" {%if form.archivo.value%} value="{{form.archivo.value}}" {%endif%} placeholder="common">
+                    <label for="floatingInput">archivo </label>
+                </div> 
+
+
+                        
+                <div class="d-grip gap-2 d-md-flex   top-buffer">
+                    <button class="btn btn-success">Guardar</button>
+                </div>
+                   
+         
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+   
+
+
+{% endblock content%}

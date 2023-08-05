@@ -1,0 +1,75 @@
+{% extends '../../layout.html' %}
+
+{% block title %} Añade documento {% endblock %}
+
+{% block content %}
+
+<!-- {{form.as_p}} -->
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="card p-3">
+            <h3 class="title-card">Ingrese los datos de antecedente de FFAA</h3>
+            <div class="card-body">
+
+               <form class="row g-3 needs-validation"  enctype="multipart/form-data"  method="POST">{% csrf_token %}
+
+                    <div class="form-floating mb-3">
+                        <select name="idtipoffaa" placeholder="icommon"  class="form-select" id="floatingInput">
+                            {% for i in tffaa %}  
+                            <option value="{{i.id}}" {% if  i.id  is form.idtipoffaa.id %}selected {% endif %}>{{i.tipoffaa}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingInput">Tipo de fuerza armada</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="carnet" class="form-control" id="floatingInput" {%if form.carnet.value%} value="{{form.carnet.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Carnet</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="grado" class="form-control" id="floatingInput" {%if form.grado.value%} value="{{form.grado.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Grado</label>
+                    </div>  
+                    <!-- TODO: significado del campo -->
+                    <div class="form-floating mb-3">
+                        <input type="number" min="1" name="idsitffaa" class="form-control" id="floatingInput" {%if form.idsitffaa.value%} value="{{form.idsitffaa.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Id sit FFAA</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" min="1" name="unidad" class="form-control" id="floatingInput" {%if form.unidad.value%} value="{{form.unidad.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Unidad</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="observ"  class="form-control" id="id_observ" placeholder="common">
+                        <label for="id_observ">Observ</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="tipo" maxlength="300" class="form-control"  id="floatingInput" {%if form.tipo.value%} value="{{form.tipo.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Tipo</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <textarea name="obs" cols="40" rows="10" class="form-control" id="floatingInput" placeholder="common">{%if form.obs.value%} {{form.obs.value}} {%endif%}</textarea>
+                        <label for="floatingInput">Observaciones </label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" name="archivo" maxlength="300" class="form-control" id="floatingInput" {%if form.archivo.value%} value="{{form.archivo.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">archivo </label>
+                    </div> 
+          
+                    <div class="d-grip gap-2 d-md-flex   top-buffer">
+                        <button class="btn btn-success">Guardar</button>
+                    </div>
+                </form> 
+
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+   
+
+
+{% endblock content%}

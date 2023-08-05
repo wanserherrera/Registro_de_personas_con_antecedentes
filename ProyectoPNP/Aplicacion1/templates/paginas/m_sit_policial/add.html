@@ -1,0 +1,36 @@
+{% extends '../../layout.html' %}
+
+{% block title %} Añade documento {% endblock %}
+
+{% block content %}
+
+<!-- {{form.as_p}} -->
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="card p-3">
+            <h3 class="title-card">Ingrese los datos del documento</h3>
+            <div class="card-body">
+
+                <form class="row g-3 needs-validation" enctype="multipart/form-data" method="POST" id="indexform"
+                    novalidate> {% csrf_token %}
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="sitpolicial" maxlength="300" class="form-control"
+                            id="floatingInput" {%if form.sitpolicial.value%} value="{{form.sitpolicial.value}}"
+                            {%endif%} placeholder="common">
+                        <label for="floatingInput">Situación policial</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea name="obs" cols="40" rows="10" class="form-control" id="floatingInput" placeholder="common">{%if form.obs.value%} {{form.obs.value}} {%endif%}</textarea>
+                        <label for="floatingInput">Observaciones </label>
+                    </div> 
+                    <div class="d-grip gap-2 d-md-flex   top-buffer">
+                        <button class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

@@ -1,0 +1,111 @@
+
+{% extends '../../layout.html' %}
+
+{% block title %} Modulo Persona {% endblock %}
+
+{% block content %}
+
+
+
+{% load static %}
+
+
+<div class="row">
+    <div class="d-flex bd-highlight col-md-12 align-items-center">
+        <div class="me-auto bd-highlight align-self-end p">
+            <h3 class="title-card">Afiliación politica </h3>
+        </div>
+        <div class="bd-highlight">
+            <a href="{% url 'listiPersona' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Regresar al listado</a>
+        </div>
+    </div> 
+    <div class="card">
+        <div class="card-title">
+            <h3 class="title-card card-title">Listado de afiliaciones politicas </h3>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-12">
+                    <a href="{% url 'viewTypeiPersona' pk%}" class="btn btn-success"><i class="fas fa-user"></i>Datos Personales</a>
+                    <a href="{% url 'listRFamiliares' pk%}" class="btn btn-success"><i class="fas fa-users"></i>Datos Familiares</a>
+                    <a href="{% url 'listRfiliacionpolitica' pk%}" class="btn btn-primary disabled"><i class="fas fa-people-arrows"></i>Filiacion Política</a>
+                    <a href="{% url 'listRPenales' pk%}" class="btn btn-success"><i class="bi bi-file-earmark-medical"></i>Antecedentes Penales</a>
+                    <a href="{% url 'listIpolicia' pk%}" class="btn btn-success"><i class="bi bi-shield-x"></i>Atec. PNP</a>
+                    <a href="{% url 'listIFFAA' pk%}" class="btn btn-success"><i class="bi bi-shield-fill-x"></i>Atec. FFAA</a>
+                    <!-- bi bi-file-earmark-medical-fill -->
+                </div>
+                <!-- Table section -->
+                <div class="col-md-3">
+                    <div class="table-responsive">
+                        <table class=" table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if filiacionpolitica %}
+                                {% for i in filiacionpolitica %}
+                                <tr>
+                                    <td id="registroFiliacion" onClick='reply_click({{i.id}})' data-filiacion="{% url 'registroFiliacion_ajax' %}" class="table-content">{{i.id}}</td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <!-- <h2>No se encontro ninguna coincidencia</h2>  -->
+                                <tr>
+                                    <td class="table-content">----</td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Body section -->
+                <div class="col-md-9">
+                    <div class="d-flex bd-highlight mb-3 align-items-center">
+                        <div class="me-auto bd-highlight align-self-end p">
+                            <h4 class="title-card">FILIACIÓN POLITICA REGISTRADA</h4>
+                        </div>
+                        <div class="bd-highlight">
+                            <a href="{% url 'createRfiliacionpolitica' pk %}" class="btn btn-success">Agregar filiación<i class="fas fa-plus-circle"></i></a>
+                            
+                        </div>
+                    </div>
+                    {% if filiacionpolitica %}
+                    <div class="row g-3" id ="r_filiacion_data">
+                        
+                    </div>
+                    {% else %}
+                    <img src="{% static 'assets/images/empty.jpg' %}" alt="" height="450" width="390" class="rounded mx-auto d-block">
+                    
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function reply_click(clicked_id)
+    {
+        var url = $("#registroFiliacion").attr("data-filiacion");
+        console.log("url seleccionada: ", url)
+        $.ajax({
+            url: url,
+            data: {
+                'id': clicked_id
+            },
+            success: function (data) {
+         
+                $('#r_filiacion_data').html(data)
+            }
+        });
+
+       
+    }
+  </script>
+
+
+{% endblock %}

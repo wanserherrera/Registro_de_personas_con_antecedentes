@@ -1,0 +1,111 @@
+<div class="sidebar close">
+  <div class="logo-details">
+    <i class="bx bx-taxi"></i>
+    <span class="logo_name">PNP</span>
+  </div>
+  <ul class="nav-links">
+    <li>
+      <a href="#">
+        <i class="bx bxs-user-circle"></i>
+        <span class="link_name">Mi Usuario</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="">Mi Usuario</a></li>
+        <li><a href="http://127.0.0.1:8000/">Usuario</a></li>
+        
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class="bx bx-user"></i>
+          <span class="link_name">Categoria</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Categoria</a></li>
+        <li>
+          <a href="{% url 'listMAreasORI' %}"
+            >Oficina Regional de Inteligencia (ORI)</a
+          >
+        </li>
+        <li><a href="{% url 'listiPersona' %}">persona</a></li>
+       
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class="bx bx-user"></i>
+          <span class="link_name">Mod. Persona</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <ul class="sub-menu">
+        <li>
+          <a href="http://127.0.0.1:8000/iPersona/form"
+            >Reg. Persona antecedentes de persona</a
+          >
+        </li>
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class="bx bx-memory-card"></i>
+          <span class="link_name">Mod. Contra</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Mod. Contra</a></li>
+        <li><a href="http://127.0.0.1:8000/Msitpolicial/">Situaciones policiales registradas</a></li>
+        <li><a href="{% url 'listmUser' %}">Usuarios registrados</a></li>
+        <li><a href="{% url 'listmUserRol' %}">Roles registrados</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <div class="bx bx-archive">
+        <a href="#">
+          <i class="bx bx-memory-card"></i>
+          <span class="link_name">Mesa Partes</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow"></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Mesa Partes</a></li>
+        <li><a href="{% url 'listDocumentsORI' %}">tipo_doc_ori</a></li>
+        <li><a href="{% url 'listDocuments' %}">tipo_doc</a></li>
+        <li><a href="{% url 'listMFactor' %}">Factor</a></li>
+      </ul>
+    </li>
+
+   
+    
+    
+    <li>
+      <div class="profile-details">
+        <div class="profile-content">
+          <!--<img src="image/profile.jpg" alt="profileImg">-->
+        </div>
+        <div class="name-job">
+          {% if request.user.is_authenticated %}
+          <div class="profile_name">{{request.user}}</div>
+          {%else%}
+          <div class="profile_name">Nombre Usuario</div>
+          {% endif %}
+          <div class="job">Rol Usuario</div>
+        </div>
+
+
+
+        
+
+        <!-- <i class='bx bx-log-out' ><a href="{% url 'logout' %}">Logout</a></i> -->
+        <a href="{% url 'logout' %}"><i class="bx bx-log-out"></i></a>
+      </div>
+    </li>
+  </ul>
+</div>

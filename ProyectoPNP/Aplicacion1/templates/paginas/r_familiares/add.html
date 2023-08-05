@@ -1,0 +1,103 @@
+{% extends '../../layout.html' %}
+
+{% block title %} Agregar un nuevo familiar xD {% endblock %}
+
+{% block content %}
+
+<!-- {{form.as_p}} -->
+
+<div class="row">
+  <div class="col-md-10">
+    <div class="card p-3">
+      <h3 class="title-card">Ingrese los datos del familiar</h3>
+      <div class="card-body">
+        <form class="row g-3 needs-validation" enctype="multipart/form-data" method="POST" id="indexform" novalidate>
+          {% csrf_token %}
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" min="1" name="nrodoc" maxlength="300" class="form-control" id="floatingInput" {%if form.nrodoc.value%} value="{{form.nrodoc.value}}" {%endif%} placeholder="common">
+              <label for="floatingInput">N° Documento</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- TODO Este es un dato ForeignKey -->
+            <div class="form-floating mb-3">
+              <select name="idparentesco" placeholder="icommon"  class="form-select" id="floatingInput">
+                  {% for i in parentescos %}  
+                  <option value="{{i.id}}" {% if  i.id  is form.idparentesco.id %}selected {% endif %}>{{i.parentesco}}</option>
+                  {% endfor %}
+              </select>
+              <label for="floatingInput">Tipo de fuerza armada</label>
+          </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" min="1" name="apepaterno" maxlength="300" class="form-control" id="floatingInput" {%if form.apepaterno.value%} value="{{form.apepaterno.value}}" {%endif%} placeholder="common">
+              <label for="floatingInput">Apellido paterno</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" min="1" name="apematerno" maxlength="300" class="form-control" id="floatingInput" {%if form.apematerno.value%} value="{{form.apematerno.value}}" {%endif%} placeholder="common">
+              <label for="floatingInput">Apellido materno</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" min="1" name="nombres" maxlength="300" class="form-control" id="floatingInput" {%if form.nombres.value%} value="{{form.nombres.value}}" {%endif%} placeholder="common">
+              <label for="floatingInput">Nombres</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <!-- TODO Especificar que significa nombresall -->
+            <div class="form-floating mb-3">
+              <input type="text" name="nombresall" maxlength="300" class="form-control" id="floatingInput" {%if form.nombresall.value%} value="{{form.nombresall.value}}" {%endif%} placeholder="common">
+              <label for="floatingInput">Nombre del familiar</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" min="1" name="dnifamiliar" maxlength="300" class="form-control" id="floatingInput" {%if form.dnifamiliar.value%} value="{{form.dnifamiliar.value}}" {%endif%} placeholder="common">
+              <label for="floatingInput">DNI del familiar</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" min="1" name="ocupacion" maxlength="300" class="form-control" id="floatingInput" {%if form.ocupacion.value%} value="{{form.ocupacion.value}}" {%endif%} placeholder="common">
+              <label for="floatingInput">Ocupación</label>
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" min="1" name="direccion" maxlength="300" class="form-control" id="floatingInput" {%if form.direccion.value%} value="{{form.direccion.value}}" {%endif%} placeholder="common">
+            <label for="floatingInput">Dirección</label>
+          </div>
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" min="1" name="telefono" maxlength="300" class="form-control" id="floatingInput" {%if orm.telefono.value%} value="{{form.telefono.value}}" {%endif%} placeholder="common">
+              <label for="floatingInput">Teléfono</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="number" min="1" name="tipo" maxlength="300" class="form-control" id="floatingInput" {%if form.tipo.value%} value="{{form.tipo.value}}" {%endif%} placeholder="common">
+              <label for="floatingInput">Tipo</label>
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea name="obs" cols="40" rows="10" class="form-control" id="floatingInput"
+              placeholder="common">{%if form.obs.value%} {{form.obs.value}} {%endif%}</textarea>
+            <label for="floatingInput">Observación </label>
+          </div>
+          <div class="d-grip gap-2 d-md-flex   top-buffer">
+            <button class="btn btn-success">Guardar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content%}

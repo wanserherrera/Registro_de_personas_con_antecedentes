@@ -1,0 +1,132 @@
+
+{% extends '../../layout.html' %}
+
+{% block title %} Modulo Persona {% endblock %}
+
+{% block content %}
+
+
+<!-- float-left icons -->
+<!-- fixed-top -->
+<!-- alerts -->
+{% load static %}
+<!-- <form action="/iPersona/search" method="POST">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Comodin" aria-label="Comodin" name="comodin" value="{{comodin}}">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="DNI" aria-label="DNI" name="dni" value="{{dni}}">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="Apellido Paterno" aria-label="Apellido Paterno" name="apepaterno" value="{{apepaterno}}">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="Apellido Materno" aria-label="Apellido Materno" name="apematerno" value="{{apematerno}}">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="Nombres" aria-label="Nombres" name="nombres" value="{{nombres}}">
+        <button class="btn btn-success">Buscar</button>
+     
+        <a href="{% url 'listiPersona' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i>Limpiar</a>
+        
+    </div>
+</form> -->
+    
+
+<div class="row">
+    <div class="d-flex bd-highlight col-md-12 align-items-center">
+        <div class="me-auto bd-highlight align-self-end p">
+            <h3 class="title-card">Antecedentes PNP Registrados </h3>
+        </div>
+        <div class="bd-highlight">
+            <a href="{% url 'listiPersona' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Regresar al listado</a>
+        </div>
+    </div> 
+    <div class="card">
+        <div class="card-title">
+            <h3 class="title-card card-title">Listado de antecedemtes PNP </h3>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-12">
+                    <a href="{% url 'viewTypeiPersona' pk%}" class="btn btn-success"><i class="fas fa-user"></i>Datos Personales</a>
+                    <a href="{% url 'listRFamiliares' pk%}" class="btn btn-success "><i class="fas fa-users"></i>Datos Familiares</a>
+                    <a href="{% url 'listRfiliacionpolitica' pk%}" class="btn btn-success"><i class="fas fa-people-arrows"></i>Filiacion Política</a>
+                    <a href="{% url 'listRPenales' pk%}" class="btn btn-success"><i class="bi bi-file-earmark-medical"></i>Antecedentes Penales</a>
+                    <a href="{% url 'listIpolicia' pk%}" class="btn btn-primary disabled"><i class="bi bi-shield-x"></i>Atec. PNP</a>
+                    <a href="{% url 'listIFFAA' pk%}" class="btn btn-success"><i class="bi bi-shield-fill-x"></i>Atec. FFAA</a>
+                    <!-- bi bi-file-earmark-medical-fill -->
+                </div>
+                <!-- Table section -->
+                <div class="col-md-3">
+                    <div class="table-responsive">
+                        <table class=" table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>nro documento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if policia %}
+                                {% for i in policia %}
+                                <tr>
+                                    <td id="registroIPNP" onClick='reply_click({{i.id}})' data-rIPNP="{% url 'registroIPNP_ajax' %}" class="table-content">{{i.id}}</td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <!-- <h2>No se encontro ninguna coincidencia</h2>  -->
+                                <tr>
+                                    <td class="table-content">----</td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Body section -->
+                <div class="col-md-9">
+                    <div class="d-flex bd-highlight mb-3 align-items-center">
+                        <div class="me-auto bd-highlight align-self-end p">
+                            <h4 class="title-card">Antecedente PNP REGISTRADO</h4>
+                        </div>
+                        <div class="bd-highlight">
+                            <a href="{% url 'createIpolicia' pk %}" class="btn btn-success">Agregar antec. PNP<i class="fas fa-plus-circle"></i></a>
+                            
+                        </div>
+                    </div>
+                    {% if policia %}
+                    <div class="row g-3" id ="r_IPNP_data">
+                        
+                    </div>
+                    {% else %}
+                    <img src="{% static 'assets/images/empty.jpg' %}" alt="" height="450" width="390" class="rounded mx-auto d-block">
+                    
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function reply_click(clicked_id)
+    {
+        var url = $("#registroIPNP").attr("data-rIPNP");
+        console.log("url seleccionada: ", url)
+        $.ajax({
+            url: url,
+            data: {
+                'id': clicked_id
+            },
+            success: function (data) {
+                console.log(data)
+                $('#r_IPNP_data').html(data)
+            }
+        });
+
+       
+    }
+  </script>
+
+{% endblock %}
+
+

@@ -1,0 +1,137 @@
+{% extends '../../layout.html' %}
+
+{% block title %} Agregar un nuevo antecedente penal{% endblock %}
+
+{% block content %}
+
+<!-- {{form.as_p}} -->
+<!-- TODO all fields: add placeholders -->
+<div class="row">
+    <div class="col-md-10">
+        <div class="card p-3">
+            <h3 class="title-card">Ingrese los datos del antecedente penal</h3>
+            <div class="card-body">
+                <form class="row g-3 needs-validation"  enctype="multipart/form-data" method="POST" id="indexform"
+                 novalidate> {% csrf_token %}
+
+
+                    <div class="form-floating mb-3">
+                        <input type="number" min="1" name="direccionpenal" maxlength="300" class="form-control"  id="floatingInput" {%if form.direccionpenal.value%} value="{{form.direccionpenal.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Direccion penal</label>
+                    </div> 
+                    <!-- TODO: Revisar el nombre correcto del label -->
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="nombreepenal" maxlength="300" class="form-control" id="floatingInput" {%if form.nombreepenal.value%} value="{{form.nombreepenal.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Nombre penal</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="procedencia" maxlength="300" class="form-control" id="floatingInput" {%if form.procedencia.value%} value="{{form.procedencia.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Procedencia</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="number" min="1" name="nroingresos" maxlength="300" class="form-control" id="floatingInput" {%if form.nroingresos.value%} value="{{form.nroingresos.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Numero de ingresos</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="motivoingreso" maxlength="300" class="form-control" id="floatingInput" {%if form.motivoingreso.value%} value="{{form.motivoingreso.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Motivo de ingreso</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="datetime-local" name="fechaingreso" maxlength="300" class="form-control" 
+                        id="floatingInput" {%if form.fechaingreso.value%} value="{{form.fechaingreso.value|date:'Y-m-d H:i:s'}}" 
+                        {%endif%} placeholder="common">
+                        <label for="floatingInput">Fecha de ingreso</label>
+                    </div> 
+                    
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="situacionjuridica" maxlength="300" class="form-control" id="floatingInput" {%if form.situacionjuridica.value%} value="{{form.situacionjuridica.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">situación jurídica</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="delitogenerico" maxlength="300" class="form-control" id="floatingInput" {%if form.delitogenerico.value%} value="{{form.delitogenerico.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Delito genérico</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="delitoespecifico" maxlength="300" class="form-control" id="floatingInput" {%if form.delitoespecifico.value%} value="{{form.delitoespecifico.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Delito específico</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="autoridadsentencia" maxlength="300" class="form-control" id="floatingInput" {%if form.autoridadsentencia.value%} value="{{form.autoridadsentencia.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Autoridad que sentencia</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="salasentencia" maxlength="300" class="form-control" id="floatingInput" {%if form.salasentencia.value%} value="{{form.salasentencia.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Sala que sentencia</label>
+                    </div> 
+                    <!-- TODO: esclarecer este campo, si es entrada de texto o entrada de archivo -->
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="docsentencia" maxlength="300" class="form-control" id="floatingInput" {%if form.docsentencia.value%} value="{{form.docsentencia.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Documentos de sentencia</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="datetime-local" name="fechasentencia" class="form-control" id="floatingInput" {%if form.fechasentencia.value%} value="{{form.fechasentencia.value|date:'Y-m-d H:i:s'}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Fecha de sentencia</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="agraviado" maxlength="300" class="form-control" id="floatingInput" {%if form.agraviado.value%} value="{{form.agraviado.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Agraviado</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="number"  name="cantanios" class="form-control" id="floatingInput" {%if form.cantanios.value%} value="{{form.cantanios.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Cantidad de años</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="number"  name="cantmeses" class="form-control" id="floatingInput" {%if form.cantmeses.value%} value="{{form.cantmeses.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Cantidad de meses</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="number"  name="cantdias" class="form-control" id="floatingInput" {%if form.cantdias.value%} value="{{form.cantdias.value}}" {%endif%} placeholder="common">  
+                        <label for="floatingInput">Cantidad de días</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="autoridadlibera" maxlength="300" class="form-control" id="floatingInput" {%if form.autoridadlibera.value%} value="{{form.autoridadlibera.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Autoridad que libera</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="salalibera" maxlength="300" class="form-control" id="floatingInput" {%if form.salalibera.value%} value="{{form.salalibera.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Sala que libera</label>
+                    </div> 
+                    <!-- TODO: Esclarecer este campo, es entrada de texto o archivo o archivos -->
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="docsalida" maxlength="300" class="form-control" id="floatingInput" {%if form.docsalida.value%} value="{{form.docsalida.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Documentos de salida</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="tipolibertad" maxlength="300" class="form-control" id="floatingInput" {%if form.tipolibertad.value%} value="{{form.tipolibertad.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Tipo de libertad</label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="datetime-local" name="fechalibertad" class="form-control" id="floatingInput" {%if form.fechalibertad.value%} value="{{form.fechalibertad.value|date:'Y-m-d H:i:s'}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Fecha de libertad</label>
+                    </div> 
+                    <!-- TODO: a qué se refiere este campo -->
+                    <div class="form-floating mb-3">
+                        <input type="text" min="1" name="tipo" maxlength="300" class="form-control" id="floatingInput" {%if form.tipo.value%} value="{{form.tipo.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">Tipo </label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <textarea name="obs" cols="40" rows="10" class="form-control" id="floatingInput" placeholder="common">{%if form.obs.value%} {{form.obs.value}} {%endif%}</textarea>
+                        <label for="floatingInput">Observaciones </label>
+                    </div> 
+                    <div class="form-floating mb-3">
+                        <input type="text" name="archivo" maxlength="300" class="form-control" id="floatingInput" {%if form.archivo.value%} value="{{form.archivo.value}}" {%endif%} placeholder="common">
+                        <label for="floatingInput">archivo </label>
+                    </div> 
+                    <div class="d-grip gap-2 d-md-flex   top-buffer">
+                        <button class="btn btn-success">Guardar</button>
+                      </div>
+                </form>              
+            </div>
+        </div>
+    </div>
+</div>
+
+   
+
+
+{% endblock content%}

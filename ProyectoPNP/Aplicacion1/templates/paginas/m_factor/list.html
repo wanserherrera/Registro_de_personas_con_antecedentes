@@ -1,0 +1,73 @@
+
+{% extends '../../layout.html' %}
+
+{% block title %} Listado de Factores {% endblock %}
+
+{% block content %}
+
+
+<!-- float-left icons -->
+<!-- fixed-top -->
+<!-- alerts -->
+{% load static %}
+
+<div class="d-flex bd-highlight mb-3 align-items-center">
+    <div class="me-auto bd-highlight align-self-end p">
+        <h3 class="title-card">Listado de factores registradas</h3>
+    </div>
+
+    <div class="bd-highlight">
+        <a href="form" class="btn btn-secondary">Agregar un nuevo Factor<i class="fas fa-plus-circle"></i></a>
+    </div>
+</div> 
+
+<div class="table-responsive">
+    <table class=" table custom-table">
+        
+        <thead>
+            <tr>
+                <th scope="col">ID ASUNTO</th>
+                <th scope="col" >ASUNTO</th>
+                <th scope="col" >ID FACTOR</th>
+                <th scope="col" >ID</th>
+                <th scope="col" >FACTOR</th>
+                <th scope="col" >ID SUBFACTOR</th>
+                <th scope="col" >SUBFACTOR</th>
+                <th scope="col" >GRUPO</th>
+                <th scope="col" >HISTORIAL</th>
+                <th scope="col" >OBSERVACION</th>
+                <th scope="col" >OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in MFactors %}  
+            <tr>
+                <td class="table-content">{{i.id}}</td>
+                <td class="table-content">{{i.idasunto}}</td>
+                <td class="table-content">{{i.asunto}}</td>
+                <td class="table-content">{{i.idfactor}}</td>
+                <td class="table-content">{{i.factor}}</td>
+                <td class="table-content">{{i.idsubfactor}}</td>
+                <td class="table-content">{{i.subfactor}}</td>
+                <td class="table-content">{{i.grupo}}</td>
+                <td class="table-content">{{i.historial}}</td>
+                <td class="table-content">{{i.obs}}</td>
+                <td class="actionC">
+                            <a href="edit/{{i.id}}" class="btn btn-secondary  "><i class="fas fa-edit"></i></a>
+                            <a href="delete/{{i.id}}" class="btn btn-secondary btnEliminacion " ><i class="fas fa-trash-alt"></i></a>
+                            <a href="view/{{i.id}}" class="btn btn-secondary "><i class="fas fa-eye"></i></a>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+           
+    </table>
+    
+</div>
+{% endblock %}

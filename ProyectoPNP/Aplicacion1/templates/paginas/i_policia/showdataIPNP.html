@@ -1,0 +1,46 @@
+{% for r in registro %}
+<div class="col-md-5">
+    <div class="row mb">
+        <b class="d-inline">Id </b>
+        <p class="d-inline">{{r.id}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Cip: </b>
+        <p class="d-inline">{{r.cip}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Grado:</b>
+        <p class="d-inline">{{r.idgrado}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Id sit policia:</b>
+        <p class="d-inline">{{r.idsitpolicial}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Unidad (id):</b>
+        <p class="d-inline">{{r.idunidad}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Unidad:</b>
+        <p class="d-inline">{{r.unidad}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">observaciones:</b>
+        <p class="d-inline">{{r.obs}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Tipo:</b>
+        <p class="d-inline">{{r.tipo}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Archivo:</b>
+        <p class="d-inline">{{r.archivo}}</p>
+    </div>
+    <a href="{% url 'updateIpolicia' r.id %}" class="btn btn-primary">Editar<i class="fas fa-edit"></i></a>
+    <a href="{% url 'deleteIpolicia' r.id %}" class="btn btn-danger btnEliminacionAjax">Eliminar<i class="fas fa-trash-alt"></i></a>
+    
+
+</div>
+{% load static %}
+<script type="text/javascript" src="{% static 'assets/js/formsControllerAjax.js' %}"></script>
+{% endfor %}

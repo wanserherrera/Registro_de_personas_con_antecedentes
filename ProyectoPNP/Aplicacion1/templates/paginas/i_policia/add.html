@@ -1,0 +1,85 @@
+{% extends '../../layout.html' %}
+
+{% block title %} Añade documento {% endblock %}
+
+{% block content %}
+
+<!-- {{form.as_p}} -->
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="card p-3">
+            <h3 class="title-card">Ingrese los datos del documento</h3>
+            <div class="card-body">
+
+                <form class="row g-3 needs-validation"  enctype="multipart/form-data"  method="POST"> {% csrf_token %}
+                   
+                   <div class="form-floating mb-3">
+                       <input type="number" min="1" name="cip"  class="form-control"  id="floatingInput" {%if form.id.value%} value="{{form.id.value}}" {%endif%} placeholder="common">
+                       <label for="floatingInput">CIP</label>
+                   </div> 
+
+                    <div class="form-floating mb-3">
+                        <select name="idgrado" class="form-select" id="floatingInput" placeholder="common">
+                            <option selected disabled value="">Seleccionar</option>
+                            {% for i in igrado %}
+                            <option value="{{i.id}}" {% if i.id is form.idgrado.id %}selected {% endif %}>{{i.grado}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingInput">Tipo de grado</label>
+                    </div>
+
+                   <div class="form-floating mb-3">
+                        <select name="idsitpolicial" placeholder="icommon" class="form-select" id="floatingInput" >
+                            <option selected disabled value="">Seleccionar</option>
+                            {% for i in isitpolicial %}
+                            <option value="{{i.id}}" {% if i.id is form.idsitpolicial.id %}selected {% endif %}>{{i.sitpolicial}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingInput">Tipo de situación policial</label>
+                    </div>
+
+                   <div class="form-floating mb-3">
+                        <select name="idunidad" class="form-select" id="floatingInput" placeholder="icommon">  
+                            <option selected disabled value="">Seleccionar</option>
+                            {% for i in iunidad %}
+                            <option value="{{i.id}}" {% if i.id is form.idunidad.id %}selected {% endif %}>{{i.unidad}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="floatingInput">Tipo de unidad</label>
+                    </div>
+
+                   <div class="form-floating mb-3">
+                       <input type="text" min="1" name="unidad" maxlength="300" class="form-control" id="floatingInput" {%if form.unidad.value%} value="{{form.unidad.value}}" {%endif%} placeholder="common">
+                       <label for="floatingInput">Unidad</label>
+                   </div> 
+                   <!-- TODO: Especificar que tipo de observacion en el nombre -->
+                   <div class="form-floating mb-3">
+                       <input type="text" name="observ" maxlength="300" class="form-control" id="floatingInput" {%if form.observ.value%} value="{{form.observ.value}}" {%endif%} placeholder="common">
+                       <label for="floatingInput">Observaciones registradas</label>
+                   </div> 
+                   <div class="form-floating mb-3">
+                       <input type="number" min="1" name="tipo"  class="form-control" id="floatingInput" {%if form.tipo.value%} value="{{form.tipo.value}}" {%endif%} placeholder="common">
+                       <label for="floatingInput">Tipo</label>
+                   </div> 
+                   <div class="form-floating mb-3">
+                    <textarea name="obs" cols="40" rows="10" class="form-control" id="floatingInput" placeholder="common">{%if form.obs.value%} {{form.obs.value}} {%endif%}</textarea>
+                    <label for="floatingInput">Observaciones </label>
+                </div> 
+                   <div class="form-floating mb-3">
+                       <input type="text" min="1" name="archivo" maxlength="300" class="form-control" id="floatingInput" {%if form.archivo.value%} value="{{form.archivo.value}}" {%endif%} placeholder="common">
+                       <label for="floatingInput">Archivo</label>
+                   </div> 
+                   <div class="d-grip gap-2 d-md-flex   top-buffer">
+                       <button class="btn btn-success">Guardar</button>
+                     </div>
+               </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+   
+
+
+{% endblock content%}

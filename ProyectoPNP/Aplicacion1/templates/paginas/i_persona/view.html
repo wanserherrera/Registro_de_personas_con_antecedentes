@@ -1,0 +1,222 @@
+
+{% extends '../../layout.html' %}
+
+{% block title %} Detalles de la persona {% endblock %}
+{%load static%}
+{% block content %}
+
+<div class="row">
+    <div class="d-flex bd-highlight col-md-12 align-items-center">
+        <div class="me-auto bd-highlight align-self-end p">
+            <h3 class="title-card">Datos de {{IPersona.nombres}}</h3>
+        </div>
+        <div class="bd-highlight">
+            <a href="{% url 'listiPersona' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Regresar al listado</a>
+        </div>
+    </div> 
+        <div class="card">
+            <div class="card-body">
+                
+                <div class="row g-3">  
+                    <div class="col-md-12">
+                        <a href="{% url 'viewTypeiPersona' IPersona.id%}" class="btn btn-primary disabled" ><i class="fas fa-user"></i>Datos Personales</a>
+                        <a href="{% url 'listRFamiliares' IPersona.id%}" class="btn btn-success"><i class="fas fa-users"></i>Datos Familiares</a>
+                        <a href="{% url 'listRfiliacionpolitica' IPersona.id%}" class="btn btn-success"><i class="fas fa-people-arrows"></i>Filiacion Publica</a>
+                        <a href="{% url 'listRPenales' IPersona.id%}" class="btn btn-success"><i class="bi bi-file-earmark-medical"></i>Antecedentes penales</a>
+                        <a href="{% url 'listIpolicia' IPersona.id%}" class="btn btn-success"><i class="bi bi-shield-x"></i>Atec. PNP</a>
+                        <a href="{% url 'listIFFAA' IPersona.id%}" class="btn btn-success"><i class="bi bi-shield-fill-x"></i>Atec. FFAA</a>
+                    </div> 
+                    <div class="col-md-4">
+                        <div class="row mb">
+                            <b class="d-inline">Nombres: </b>
+                            <p class="d-inline">{{IPersona.nombres}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Apellidos: </b>
+                            <p class="d-inline">{{IPersona.apepaterno}} {{IPersona.apematerno}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Tipo de persona: </b>
+                            <p class="d-inline">{{IPersona.idtipopersona}}</p>
+                            <P></P>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Procedencia: </b>
+                            <p class="d-inline">{{IPersona.idprocedencia}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Tipo y Nro de documento: </b>
+                            <p class="d-inline">{{IPersona.idtipodocumento}}: {{IPersona.nrodoc}}   </p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Fecha de Nacimiento: </b>
+                            <p class="d-inline"> {{IPersona.fechanacimiento|date:"Y-m-d"}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Natural: </b>
+                            <p class="d-inline"> {{IPersona.natural}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Genero: </b>
+                            <p class="d-inline">{{IPersona.idgenero}}</p>
+                        </div>
+                        <!-- TODO -->
+                        <div class="row mb">
+                            <b class="d-inline">Dirección: </b>
+                            <p class="d-inline">{{IPersona.nombres}}</p>
+                        </div>
+
+                        <div class="row mb">
+                            <b class="d-inline">Telefono: </b>
+                            <p class="d-inline">{{IPersona.telefono}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Ocupacion: </b>
+                            <p class="d-inline">{{IPersona.ocupacion}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Religion: </b>
+                            <p class="d-inline">{{IPersona.religion}}</p>
+                        </div>
+                        <!-- TODO -->
+                        <div class="row mb">
+                            <b class="d-inline">Grado de instruccion: </b>
+                            <p class="d-inline">{{IPersona.idgradoinstruccion}}</p>
+                        </div>
+
+                        <!-- Otro documento -->
+                        <!-- Fecha nac -->
+                        <!-- Natural -->
+                        <!-- Genero -->
+                        <!-- Dirección (regon, provincia, distrito) -->
+                        <!-- telefono -->
+                        <!-- ocupacion -->
+                        <!-- 
+
+                            Religion
+                            Grado de instruccion
+                            Profesion
+                            centrode estudios
+                            Email
+                            Redes sociales
+                            Factor
+                            Tipode organizacion
+                            Modalida de delito
+                            Alias 
+                            Talla
+                            Peso
+                            Raza
+                            Contextura Caminada 
+                            Cicatriz
+                            Tatuaje
+                            Habito 
+                            Vicios 
+                            Defectos
+                            Tipo
+                            Observaciones
+                         -->
+                        
+                    </div>
+                    
+                    <div class="col-md-4">
+                        
+                        <div class="row mb">
+                            <b class="d-inline">Profesion: </b>
+                            <p class="d-inline">{{IPersona.profesion}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Centro de estudios: </b>
+                            <p class="d-inline">{{IPersona.centroestudios}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Email: </b>
+                            <p class="d-inline">{{IPersona.email}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Redes sociales: </b>
+                            <p class="d-inline">{{IPersona.redessociales}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Factor: </b>
+                            <p class="d-inline">{{IPersona.idfactor}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Tipo de organizacion: </b>
+                            <p class="d-inline">{{IPersona.tipoorganizacion}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Modalidad de delito: </b>
+                            <p class="d-inline">{{IPersona.modalidaddelito}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Alias: </b>
+                            <p class="d-inline">{{IPersona.alias}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Talla: </b>
+                            <p class="d-inline">{{IPersona.talla}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Peso: </b>
+                            <p class="d-inline">{{IPersona.peso}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Raza: </b>
+                            <p class="d-inline">{{IPersona.idraza}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Contextura: </b>
+                            <p class="d-inline">{{IPersona.idcontextura}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Caminada: </b>
+                            <p class="d-inline">{{IPersona.caminada}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Cicatriz: </b>
+                            <p class="d-inline">{{IPersona.cicatrices}}</p>
+                        </div>
+                    
+                    </div>   
+                    <div class="col-md-4">
+                        <h5>Imagen de la persona</h5>
+                        <img {% if IPersona.imageURL %} src="{{IPersona.imageURL}}" {% else %} src="{% static 'media/IPersona/default.jpg' %}" {% endif %} height="300" width="230" />
+                        <div class="row mb">
+                            <b class="d-inline">Tatuaje: </b>
+                            <p class="d-inline">{{IPersona.tatuajes}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Habito: </b>
+                            <p class="d-inline">{{IPersona.habitos}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Vicio: </b>
+                            <p class="d-inline">{{IPersona.vicios}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Defecto: </b>
+                            <p class="d-inline">{{IPersona.defectos}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">Tipo: </b>
+                            <p class="d-inline">{{IPersona.tipo}}</p>
+                        </div>
+                        <div class="row mb">
+                            <b class="d-inline">observaciones: </b> 
+                            <p class="d-inline">{{IPersona.obs}}</p>
+                        </div>
+                    </div>      
+                    
+                </div>
+                
+                
+                
+                
+            </div>
+        </div>
+
+</div>
+
+
+
+{% endblock %}

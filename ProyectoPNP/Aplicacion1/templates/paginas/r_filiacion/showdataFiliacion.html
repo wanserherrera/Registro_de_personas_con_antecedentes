@@ -1,0 +1,46 @@
+{% for r in registro %}
+<div class="col-md-5">
+    <div class="row mb">
+        <b class="d-inline">Id tipo de organizacion </b>
+        <p class="d-inline">{{r.idtipoorganizacion}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Organizacion: </b>
+        <p class="d-inline">{{r.organizacion}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Tinte político:</b>
+        <p class="d-inline">{{r.tintepolitico}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Cargo que ocupa:</b>
+        <p class="d-inline">{{r.cargoocupa}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Año:</b>
+        <p class="d-inline">{{r.anio}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Fecha:</b>
+        <p class="d-inline">{{r.fecha}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Tipo:</b>
+        <p class="d-inline">{{r.tipo}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Observaciones:</b>
+        <p class="d-inline">{{r.obs}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Archivo:</b>
+        <p class="d-inline">{{r.archivo}}</p>
+    </div>
+    <a href="{% url 'updateRfiliacionpolitica' r.id %}" class="btn btn-primary">Editar<i class="fas fa-edit"></i></a>
+    <a href="{% url 'deleteRfiliacionpolitica' r.id %}" class="btn btn-danger btnEliminacionAjax">Eliminar<i class="fas fa-trash-alt"></i></a>
+    
+
+</div>
+{% load static %}
+<script type="text/javascript" src="{% static 'assets/js/formsControllerAjax.js' %}"></script>
+{% endfor %}

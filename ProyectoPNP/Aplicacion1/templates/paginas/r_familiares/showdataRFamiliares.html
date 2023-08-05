@@ -1,0 +1,31 @@
+{% for r in registro %}
+<div class="col-md-5">
+    <div class="row mb">
+        <b class="d-inline">Id </b>
+        <p class="d-inline">{{r.id}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Nro de doc: </b>
+        <p class="d-inline">{{r.nrodoc}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Nombres:</b>
+        <p class="d-inline">{{r.nombres}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Parentesco:</b>
+        <p class="d-inline">{{r.idparentesco}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Nombres completos:</b>
+        <p class="d-inline">{{r.apepaterno}} {{r.apematerno}}, {{r.nombres}}</p>
+        
+    </div>
+    <a href="{% url 'updateRFamiliares' r.id %}" class="btn btn-primary">Editar<i class="fas fa-edit"></i></a>
+    <a href="{% url 'deleteRFamiliares' r.id %}" class="btn btn-danger btnEliminacionAjax">Eliminar<i class="fas fa-trash-alt"></i></a>
+    
+
+</div>
+{% load static %}
+<script type="text/javascript" src="{% static 'assets/js/formsControllerAjax.js' %}"></script>
+{% endfor %}

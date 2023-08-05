@@ -1,0 +1,47 @@
+{% for r in registro %}
+
+<div class="col-md-5">
+    <div class="row mb">
+        <b class="d-inline">Id </b>
+        <p class="d-inline">{{r.id}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Tipo de FFAA: </b>
+        <p class="d-inline">{{r.idtipoffaa}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Carnet:</b>
+        <p class="d-inline">{{r.carnet}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Grado:</b>
+        <p class="d-inline">{{r.grado}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Sit FFAA:</b>
+        <p class="d-inline">{{r.idsitffaa}}</p>
+    </div>
+
+    <div class="row mb">
+        <b class="d-inline">Unidad:</b>
+        <p class="d-inline">{{r.unidad}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Tipo:</b>
+        <p class="d-inline">{{r.tipo}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Observaciones:</b>
+        <p class="d-inline">{{r.obs}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Archivo:</b>
+        <p class="d-inline">{{r.archivo}}</p>
+    </div>
+    <a href="{% url 'updateIFFAA' r.id %}" class="btn btn-primary">Editar<i class="fas fa-edit"></i></a>
+    <a href="{% url 'deleteIFFAA' r.id %}" class="btn btn-danger btnEliminacionAjax">Eliminar<i class="fas fa-trash-alt"></i></a>
+</div>
+{% load static %}
+<script type="text/javascript" src="{% static 'assets/js/formsControllerAjax.js' %}"></script>
+
+{% endfor %}

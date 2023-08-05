@@ -1,0 +1,109 @@
+{% for r in registro %}
+<div class="col-md-5">
+    <div class="row mb">
+        <b class="d-inline">id </b>
+        <p class="d-inline">{{r.id}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Dirección penal:  </b>
+        <p class="d-inline">{{r.direccionpenal}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Dirección penal:  </b>
+        <p class="d-inline">{{r.direccionpenal}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Procedencia:  </b>
+        <p class="d-inline">{{r.procedencia}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Nro de ingresos:  </b>
+        <p class="d-inline">{{r.nroingresos}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Motivo de ingresos:  </b>
+        <p class="d-inline">{{r.motivoingreso}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Fecha de ingresos:  </b>
+        <p class="d-inline">{{r.fechaingreso}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Situacion juridica:  </b>
+        <p class="d-inline">{{r.situacionjuridica}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Delito generico:  </b>
+        <p class="d-inline">{{r.delitogenerico}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Delito especifico: </b>
+        <p class="d-inline">{{r.delitoespecifico}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Autoridad sentencia: </b>
+        <p class="d-inline">{{r.autoridadsentencia}}</p>
+    </div>
+
+        <!-- r.idpersona.nombres -->
+
+        <!-- r.idpersona.idtipodocumento.documento -->
+
+        <!-- r.idpersona.idtipodocumento.fechacrea -->
+</div>
+<div class="col-md-4">
+    <div class="row mb">
+        <b class="d-inline">Sala de sentencia: </b>
+        <p class="d-inline">{{r.salasentencia}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Docs sentencia: </b>
+        <p class="d-inline">{{r.docsentencia}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Fecha de sentencia: </b>
+        <p class="d-inline">{{r.fechasentencia}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Agraviados: </b>
+        <p class="d-inline">{{r.agraviado}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Cantanios: </b>
+        <p class="d-inline">{{r.cantanios}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Autoridad que libera: </b>
+        <p class="d-inline">{{r.autoridadlibera}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Sala que libera: </b>
+        <p class="d-inline">{{r.salalibera}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Docs salida: </b>
+        <p class="d-inline">{{r.docsalida}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Tipo de libertad: </b>
+        <p class="d-inline">{{r.tipolibertad}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">Fecha de libertad: </b>
+        <p class="d-inline">{{r.fechalibertad}}</p>
+    </div>
+    <div class="row mb">
+        <b class="d-inline">archivo: </b>
+        <p class="d-inline">{{r.archivo}}</p>
+    </div><div class="row mb">
+        <b class="d-inline">Observacion: </b>
+        <p class="d-inline">{{r.obs}}</p>
+    </div>
+    <a href="{% url 'updateRPenales' r.id %}" class="btn btn-primary">Editar<i class="fas fa-edit"></i></a>
+    <a href="{% url 'deleteRPenales' r.id %}" class="btn btn-danger btnEliminacionAjax">Eliminar<i class="fas fa-trash-alt"></i></a>
+    
+
+</div>
+{% load static %}
+<script type="text/javascript" src="{% static 'assets/js/formsControllerAjax.js' %}"></script>
+{% endfor %}

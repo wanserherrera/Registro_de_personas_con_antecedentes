@@ -1,0 +1,80 @@
+
+{% extends '../../layout.html' %}
+
+{% block title %} Modulo Persona {% endblock %}
+
+{% block content %}
+
+
+<!-- float-left icons -->
+<!-- fixed-top -->
+<!-- alerts -->
+{% load static %}
+<!-- <form action="/iPersona/search" method="POST">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Comodin" aria-label="Comodin" name="comodin" value="{{comodin}}">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="DNI" aria-label="DNI" name="dni" value="{{dni}}">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="Apellido Paterno" aria-label="Apellido Paterno" name="apepaterno" value="{{apepaterno}}">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="Apellido Materno" aria-label="Apellido Materno" name="apematerno" value="{{apematerno}}">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="Nombres" aria-label="Nombres" name="nombres" value="{{nombres}}">
+        <button class="btn btn-success">Buscar</button>
+     
+        <a href="{% url 'listiPersona' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i>Limpiar</a>
+        
+    </div>
+</form> -->
+    
+
+<div class="d-flex bd-highlight mb-3 align-items-center">
+   
+    <div class="me-auto bd-highlight align-self-end p">
+        <h3 class="title-card">Antecedes Policia registrados</h3>
+    </div>
+
+    <div class="bd-highlight">
+       
+    </div>
+</div> 
+
+<div class="table-responsive">
+    <table class=" table table-borderless">
+        
+        <thead>
+            <tr>
+                <th>nrodoc</th>
+                <th>cip</th>
+                <th>unidad</th>
+                <th colspan="3">OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if policia %}  
+                {% for i in policia %}  
+                <tr>
+                    <td class="table-content">{{i.nrodoc}}</td>
+                    <td class="table-content">{{i.cip}}</td>
+                    <td class="table-content">{{i.unidad}}</td>
+                    <td><a href="{% url 'updateIpolicia' i.id %}" class="btn btn-secondary"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'deleteIpolicia' i.id%}" class="btn btn-secondary"><i class="fas fa-trash-alt"></i></a>
+                    <a href="{% url 'viewIpolicia' i.id%}" class="btn btn-secondary "><i class="fas fa-eye"></i></a></td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                 <!-- <h2>No se encontro ninguna coincidencia</h2>  -->
+                 <tr>
+                    <td class="table-content">----</td>
+                    <td class="table-content">----</td>
+                    <td class="table-content">----</td>
+           
+
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

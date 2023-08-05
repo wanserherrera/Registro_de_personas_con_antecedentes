@@ -1,0 +1,878 @@
+{% extends '../../layout.html' %}
+
+{% block title %} Agrega una nueva persona {% endblock %}
+
+{% block content %}
+
+{% load l10n %}
+{% localize off %}
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="card p-3">
+            <h3 class="title-card">Ingrese los datos de la persona</h3>
+            <div class="card-body">
+                {% if IPersona %}  
+                
+                <form class="row g-3 needs-validation"  enctype="multipart/form-data" action="/iPersona/modify/{{IPersona.id}}" method="POST" id="indexform"
+                data-city-url="{% url 'ajax_cities' %}" data-province-url="{% url 'ajax_province' %}" novalidate>
+                    {% csrf_token %}
+
+                    <div class="col-md-4">
+
+                      <div class="form-floating mb-3">
+                        <select name="idtipopersona" id="floatingInput" placeholder="id rol"  value="{{IPersona.idtipopersona}}" class="form-select">
+                            {% for i in Tipopersona %}   
+                              <option value="{{i.id}}" {% if  i.id  is IPersona.idtipopersona.id %}selected {% endif %}>{{i.tipopersona}}</option>
+        
+                            {% endfor %}
+                          </select>
+                          <label for="floatingInput">Tipo de persona</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <select name="idpais" id="floatingInput" placeholder="id rol" value="{{IPersona.idpais}}" class="form-select">
+                            {% for i in Mpais %}  
+                            <option value="{{i.id}}"  {% if  i.id  is IPersona.idpais.id %}selected {% endif %}>{{i.pais}}</option>
+                            {% endfor %}
+                          </select>
+                          <label for="floatingInput">Pais</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <select name="idprocedencia" id="floatingInput" placeholder="id rol" value="{{IPersona.idprocedencia}}" class="form-select">
+                            {% for i in Mprocedencia %}  
+                            <option value="{{i.id}}"  {% if  i.id  is IPersona.idprocedencia.id %}selected {% endif %}>{{i.procedencia}}</option>
+                            {% endfor %}
+                          </select>
+                          <label for="floatingInput">Procedencia</label>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <select name="idtipodocumento" id="floatingInput" placeholder="id rol" value="{{IPersona.idtipodocumento}}" class="form-select">
+                            {% for i in Tipodocumento %}  
+                            <option value="{{i.id}}" {% if  i.id  is IPersona.idtipodocumento.id %}selected {% endif %}>{{i.documento}}</option>
+                            {% endfor %}
+                          </select>
+                          <label for="floatingInput">Tipo de documento</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="nrodoc" id="floatingInput" placeholder="Nombres" value="{{IPersona.nrodoc}}">
+                        <label for="floatingInput">N° Documento</label>
+                      </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" name="otrodocumento" id="floatingInput" placeholder="Nombres" value="{{IPersona.otrodocumento}}">
+                      <label for="floatingInput">Otro documento</label>
+                    </div>
+                    
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="apepaterno" id="floatingInput" placeholder="Nombres" value="{{IPersona.apepaterno}}">
+                        <label for="floatingInput">Apellido Paterno</label>
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="apematerno" id="floatingInput" placeholder="Nombres" value="{{IPersona.apematerno}}">
+                        <label for="floatingInput">Apellido Materno</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="nombres" id="floatingInput" placeholder="Nombres" value="{{IPersona.nombres}}">
+                        <label for="floatingInput">Nombres</label>
+                      </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input type="date" class="form-control" id="floatingInput" name="fechanacimiento" value={{IPersona.fechanacimiento|date:"Y-m-d"}}>
+                      <label for="floatingInput">Fecha de nacimiento</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" name="natural" id="floatingInput" placeholder="Natural" value="{{IPersona.natural}}">
+                      <label for="floatingInput">Natural</label>
+                    </div>
+
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <select name="idestadocivil" id="floatingInput" placeholder="id rol" value="{{IPersona.idestadocivil}}" class="form-select">
+                            {% for i in Mestadocivil %}  
+                            <option value="{{i.id}}" {% if  i.id  is IPersona.idestadocivil.id %}selected {% endif %}>{{i.estadocivil}}</option>
+                            {% endfor %}
+                          </select>
+                          <label for="floatingInput">Estado Civil</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <select name="idgenero" id="floatingInput" placeholder="id rol" value="{{IPersona.idgenero}}" class="form-select">
+                            {% for i in Mgenero %}  
+                            <option value="{{i.id}}" {% if  i.id  is IPersona.idgenero.id %}selected {% endif %}>{{i.sexo}}</option>
+                            {% endfor %}
+                          </select>
+                          <label for="floatingInput">Genero</label>
+                      </div>
+                    </div>
+                    <!-- TODO -->
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <select name="departamentos" id="departamentos" class="form-select">
+                          
+                          {% for depa in d %}
+                          <option value="{{depa.iddepartamento}}" {% if  depa.iddepartamento  is Mubigeo.iddepartamento %}selected {% endif %} > {{ depa.departamento}}
+                          </option>
+                          {% endfor %}
+                        </select>
+                        <label for="floatingInput">Departamento</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <select name="provincias" id="provincias" class="form-select" id="floatingInput">
+                          {% for province in p %}
+                          <option value="{{province.idprovincia}}" {% if  province.idprovincia  is Mubigeo.idprovincia %}selected {% endif %} > {{ province.provincia}}
+                          </option>
+                          {% endfor %}
+
+                        </select>
+                        <label for="floatingInput">Provincias</label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                     
+                        <div class="form-floating mb-3">
+                          <select name="ciudades" id="ciudades" class="form-select" id="floatingInput">
+                            {% for ciudad in c %}
+                              <option value="{{ciudad.iddistrito}}" {% if  ciudad.iddistrito  is Mubigeo.iddistrito %}selected {% endif %} > {{ ciudad.distrito }}
+                              </option>
+                            {% endfor %}
+
+                          </select>
+                          <label for="floatingInput">Ciudades</label>
+                        </div>
+                    </div>
+
+
+                   
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="domicilio" id="floatingInput" placeholder="Domicilio" value="{{IPersona.domicilio}}">
+                        <label for="floatingInput">Domicilio</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="telefono" id="floatingInput" placeholder="Telefono" value="{{IPersona.telefono}}">
+                        <label for="floatingInput">Telefono</label>
+                      </div>
+                    </div>
+                   
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" name="ocupacion" id="floatingInput" placeholder="Ocupacion" value="{{IPersona.ocupacion}}">
+                      <label for="floatingInput">Ocupacion</label>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="religion" id="floatingInput" placeholder="Religion" value="{{IPersona.religion}}">
+                        <label for="floatingInput">Religion</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <select name="idgradoinstruccion" id="floatingInput" placeholder="id rol" value="{{IPersona.idgradoinstruccion}}" class="form-select">
+                            {% for i in Mgradoinstruccion %}  
+                            <option value="{{i.id}}" {% if  i.id  is IPersona.idgradoinstruccion.id %}selected {% endif %}>{{i.gradoinstruccion}}</option>
+                            {% endfor %}
+                          </select>
+                          <label for="floatingInput">Grado de instruccion</label>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="profesion" id="floatingInput" placeholder="Profesion" value="{{IPersona.profesion}}">
+                        <label for="floatingInput">Profesion</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="centroestudios" id="floatingInput" placeholder="Centroestudios" value="{{IPersona.centroestudios}}">
+                        <label for="floatingInput">Centro de estudios</label>
+                      </div>  
+                    </div>
+                      <!-- <h1>{{IPersona.fechanacimiento}}</h1> -->
+                 
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="email" id="floatingInput" placeholder="Email" value="{{IPersona.email}}">
+                        <label for="floatingInput">Email</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="redessociales" id="floatingInput" placeholder="Redessociales" value="{{IPersona.redessociales}}">
+                        <label for="floatingInput">Redes sociales</label>
+                      </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <select name="idfactor" id="floatingInput" placeholder="id rol" value="{{IPersona.idfactor}}" class="form-select">
+                          {% for i in Mfactor%}  
+                          <option value="{{i.id}}" {% if  i.id  is IPersona.idfactor.id %}selected {% endif %}>{{i.factor}}</option>
+                          {% endfor %}
+                        </select>
+                        <label for="floatingInput">Factor</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" name="tipoorganizacion" id="floatingInput" placeholder="Tipoorganizacion" value="{{IPersona.tipoorganizacion}}">
+                      <label for="floatingInput">Tipo de organizacion</label>
+                    </div>
+                    
+                    
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="modalidaddelito" id="floatingInput" placeholder="Modalidaddelito" value="{{IPersona.modalidaddelito}}">
+                        <label for="floatingInput">Modalidad de delito</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="alias" id="floatingInput" placeholder="Alias" value="{{IPersona.alias}}">
+                        <label for="floatingInput">Alias</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        
+                        <input type="number" class="form-control tal" min="1" max="3" step="0.01"  name="talla" id="floatingInput" placeholder="Talla" value="{{IPersona.talla}}">
+                        <label for="floatingInput">Talla</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <input type="number" class="form-control tal"  step="0.01" name="peso" id="floatingInput" placeholder="Peso" value="{{IPersona.peso}}">
+                        <label for="floatingInput">Peso</label>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <select name="idraza" id="floatingInput" placeholder="id rol" value="{{IPersona.idraza}}" class="form-select">
+                            {% for i in Tiporaza %}  
+                            <option value="{{i.id}}" {% if  i.id  is IPersona.idraza.id %}selected {% endif %}>{{i.raza}}</option>
+                            {% endfor %}
+                          </select>
+                          <label for="floatingInput">Raza</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-floating mb-3">
+                        <select name="idcontextura" id="floatingInput" placeholder="id rol" value="{{IPersona.idcontextura}}" class="form-select">
+                            {% for i in Tipocontextura %}  
+                            <option value="{{i.id}}" {% if  i.id  is IPersona.idfactor.id %}selected {% endif %}>{{i.contextura}}</option>
+                            {% endfor %}
+                          </select>
+                          <label for="floatingInput">Contextura</label>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="caminada" id="floatingInput" placeholder="Caminada" value="{{IPersona.caminada}}">
+                        <label for="floatingInput">Caminada</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="cicatrices" id="floatingInput" placeholder="Cicatrices" value="{{IPersona.cicatrices}}">
+                        <label for="floatingInput">Cicatrices</label>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="tatuajes" id="floatingInput" placeholder="Tatuajes" value="{{IPersona.tatuajes}}">
+                        <label for="floatingInput">Tatuajes</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="habitos" id="floatingInput" placeholder="Habitos" value="{{IPersona.habitos}}">
+                        <label for="floatingInput">Habitos</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="vicios" id="floatingInput" placeholder="Vicios" value="{{IPersona.vicios}}">
+                        <label for="floatingInput">Vicios</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="defectos" id="floatingInput" placeholder="Defectos" value="{{IPersona.defectos}}">
+                        <label for="floatingInput">Defectos</label>
+                      </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <input type="number" class="form-control" name="tipo" id="floatingInput" placeholder="Tipo" value="{{IPersona.tipo}}">
+                      <label for="floatingInput">Tipo</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <textarea class="form-control" placeholder="Observaciones" id="floatingTextarea2" style="height: 100px" name="archivo">{{IPersona.archivo}}</textarea>
+                      <label for="floatingTextarea2">Archivo</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <textarea class="form-control" placeholder="Observaciones" id="floatingTextarea2" style="height: 100px" name="obs">{{IPersona.obs}}</textarea>
+                      <label for="floatingTextarea2">Observaciones</label>
+                    </div>
+                    {{IPersona.foto}}
+
+                    <div class="mb-3">
+                      <label for="formFile" class="form-label">Ingresar una foto</label>
+                      <input class="form-control" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+                    </div>
+
+                    <div class="d-grip gap-2 d-md-flex   top-buffer">
+                        <button class="btn btn-success">Guardar</button>
+                    </div>
+                   
+
+                </form>
+
+        {% else %}
+
+        <!-- ADD FORM SECTION -->
+
+
+        <form class="row g-3 needs-validation"  enctype="multipart/form-data" action="/iPersona/create" method="POST" id="indexform"
+          data-city-url="{% url 'ajax_cities' %}" data-province-url="{% url 'ajax_province' %}" novalidate>
+          {% csrf_token %}
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <select name="idtipopersona" id="floatingInput" placeholder="id rol" class="form-select" required>
+                <option selected disabled value="">Seleccionar</option>
+                {% for i in Tipopersona %}
+                <option value="{{i.id}}">{{i.tipopersona}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Tipo de persona</label>
+              <div class="invalid-feedback">
+                Debe seleccionar un tipo de persona
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <select name="idpais" id="floatingInput" placeholder="id rol" class="form-select">
+                <option selected disabled value="">Seleccionar</option>
+                {% for i in Mpais %}
+                <option value="{{i.id}}">{{i.pais}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Pais</label>
+              
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <select name="idprocedencia" id="floatingInput" placeholder="id rol" class="form-select" required>
+                <option selected disabled value="">Seleccionar</option>
+                {% for i in Mprocedencia %}
+                <option value="{{i.id}}">{{i.procedencia}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Procedencia</label>
+              <div class="invalid-feedback">
+                Debe ingresar una procedencia
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <select name="idtipodocumento" id="floatingInput" placeholder="id rol" class="form-select" required>
+                <option selected disabled value="">Seleccionar</option>
+                {% for i in Tipodocumento %}
+                <option value="{{i.id}}">{{i.documento}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Tipo de documento</label>
+              <div class="invalid-feedback">
+                Por favor ingrese un tipo de documento
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="nrodoc" id="floatingInput" placeholder="Nombres" required>
+              <label for="floatingInput">N° Documento</label>
+              <div class="invalid-feedback">
+                Por favor, ingrese un Nro de documento
+              </div>
+            </div>
+          </div>
+
+          
+          
+
+          
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="otrodocumento" id="floatingInput" placeholder="Nombres">
+            <label for="floatingInput">Otro documento</label>
+          </div>
+
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="apepaterno" id="floatingInput" placeholder="Nombres">
+              <label for="floatingInput">Apellido Paterno</label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="apematerno" id="floatingInput" placeholder="Nombres">
+              <label for="floatingInput">Apellido Materno</label>
+            </div>
+          </div>
+            
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="nombres" id="floatingInput" placeholder="Nombres" required>
+              <label for="floatingInput">Nombres</label>
+            </div>
+          </div>
+        
+          <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="floatingInput" name="fechanacimiento">
+            <label for="floatingInput">Fecha de nacimiento</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="natural" id="floatingInput" placeholder="Natural">
+            <label for="floatingInput">Natural</label>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <select name="idestadocivil" id="floatingInput" placeholder="id rol" class="form-select">
+                {% for i in Mestadocivil %}
+                <option value="{{i.id}}">{{i.estadocivil}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Estado Civil</label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <select name="idgenero" id="floatingInput" placeholder="id rol" class="form-select">
+                {% for i in Mgenero %}
+                <option value="{{i.id}}">{{i.sexo}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Genero</label>
+            </div>
+          </div>
+          
+          
+          <div class="form-floating mb-3">
+            <select name="idubigeo" id="floatingInput" placeholder="id rol" class="form-select">
+              {% for i in Mubigeo %}
+              <option value="{{i.id}}">{{i.departamento}}-{{i.provincia}}-{{i.distrito}}</option>
+              {% endfor %}
+            </select>
+            <label for="floatingInput">Ubigeo</label>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <select name="departamentos" id="departamentos" class="form-select">
+                {% for depa in d %}
+                <option value="{{depa.iddepartamento}}"> {{ depa.departamento}}
+                </option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Departamento</label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <select name="provincias" id="provincias" class="form-select" id="floatingInput">
+              </select>
+              <label for="floatingInput">Provincias</label>
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <select name="ciudades" id="ciudades" class="form-select" id="floatingInput">
+              </select>
+              <label for="floatingInput">Ciudades</label>
+            </div>
+          </div>
+          
+
+
+          
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="domicilio" id="floatingInput" placeholder="Domicilio">
+              <label for="floatingInput">Domicilio</label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="telefono" id="floatingInput" placeholder="Telefono">
+              <label for="floatingInput">Telefono</label>
+            </div>
+          </div>
+          
+
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="ocupacion" id="floatingInput" placeholder="Ocupacion">
+            <label for="floatingInput">Ocupacion</label>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="religion" id="floatingInput" placeholder="Religion">
+              <label for="floatingInput">Religion</label>
+            </div>
+  
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <select name="idgradoinstruccion" id="floatingInput" placeholder="id rol" class="form-select">
+                {% for i in Mgradoinstruccion %}
+                <option value="{{i.id}}">{{i.gradoinstruccion}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Grado de instruccion</label>
+            </div>
+          </div>
+          
+
+
+         
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="profesion" id="floatingInput" placeholder="Profesion">
+              <label for="floatingInput">Profesion</label>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="centroestudios" id="floatingInput"
+                placeholder="Centroestudios">
+              <label for="floatingInput">Centroestudios</label>
+            </div>
+          </div>
+        
+
+
+       
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="email" id="floatingInput" placeholder="Email">
+              <label for="floatingInput">Email</label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="redessociales" id="floatingInput" placeholder="Redessociales">
+              <label for="floatingInput">Redes sociales</label>
+            </div>
+          </div>
+         
+
+         
+
+
+
+          <div class="form-floating mb-3">
+            <select name="idfactor" id="floatingInput" placeholder="id rol" class="form-select">
+              {% for i in Mfactor%}
+              <option value="{{i.id}}">{{i.factor}}</option>
+              {% endfor %}
+            </select>
+            <label for="floatingInput">Factor</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="tipoorganizacion" id="floatingInput"
+              placeholder="Tipoorganizacion">
+            <label for="floatingInput">Tipo de organizacion</label>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="modalidaddelito" id="floatingInput"
+                placeholder="Modalidaddelito">
+              <label for="floatingInput">Modalidad de delito</label>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="alias" id="floatingInput" placeholder="Alias">
+              <label for="floatingInput">Alias</label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" step="0.01" min="0" max="10" name="talla" id="floatingInput" placeholder="Talla">
+              <label for="floatingInput">Talla</label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" name="peso" id="floatingInput" placeholder="Peso">
+              <label for="floatingInput">Peso</label>
+            </div>
+          </div>
+         
+
+          
+
+          
+
+        
+
+
+
+
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <select name="idraza" id="floatingInput" placeholder="id rol" class="form-select">
+                {% for i in Tiporaza %}
+                <option value="{{i.id}}">{{i.raza}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Raza</label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <select name="idcontextura" id="floatingInput" placeholder="id rol" class="form-select">
+                {% for i in Tipocontextura %}
+                <option value="{{i.id}}">{{i.contextura}}</option>
+                {% endfor %}
+              </select>
+              <label for="floatingInput">Contextura</label>
+            </div>
+          </div>
+          
+
+        
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="caminada" id="floatingInput" placeholder="Caminada">
+              <label for="floatingInput">Caminada</label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="cicatrices" id="floatingInput" placeholder="Cicatrices">
+              <label for="floatingInput">Cicatrices</label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="tatuajes" id="floatingInput" placeholder="Tatuajes">
+              <label for="floatingInput">Tatuajes</label>
+            </div>
+          </div>
+          
+
+        
+
+          <div class="col-md-4">
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="habitos" id="floatingInput" placeholder="Habitos">
+              <label for="floatingInput">Habitos</label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="vicios" id="floatingInput" placeholder="Vicios">
+              <label for="floatingInput">Vicios</label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="defectos" id="floatingInput" placeholder="Defectos">
+              <label for="floatingInput">Defectos</label>
+            </div>
+          </div>
+
+
+
+
+          
+
+        
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="tipo" id="floatingInput" placeholder="Tipo">
+            <label for="floatingInput">Tipo</label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Observaciones" id="floatingTextarea2" style="height: 100px"
+              name="archivo"></textarea>
+            <label for="floatingTextarea2">Archivo</label>
+          </div>
+
+
+
+
+
+
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Observaciones" id="floatingTextarea2" style="height: 100px"
+              name="Obs"></textarea>
+            <label for="floatingTextarea2">Observaciones</label>
+          </div>
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Ingresar una foto</label>
+            <input class="form-control" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+          </div>
+
+          <div class="d-grip gap-2 d-md-flex   top-buffer">
+            <button class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% load static %}
+<script type="text/javascript" src="{% static 'assets/js/validations.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  
+  $("#departamentos").change(function () {
+    var url = $("#indexform").attr("data-province-url");
+    var departamentoid = $(this).val();
+    console.log("url seleccionada: ", url)
+    $.ajax({
+      url: url,
+      data: {
+        'departamentoid': departamentoid
+      },
+      success: function (data) {
+        console.log(data)
+        $('#provincias').html(data);
+      }
+    });
+
+    if ($('#provincias').val() == null) {
+      console.log('vacio')
+      $('#ciudades').html('<option value=""></option>')
+    } else {
+
+      var provinciaid = $('#provincias').val();
+      var urls = $("#indexform").attr("data-city-url");
+      $.ajax({
+        url: urls,
+        data: {
+          'departamentoid': departamentoid,
+          'provinciaid': provinciaid
+        },
+        success: function (data) {
+          console.log(data)
+          $('#ciudades').html(data);
+        }
+      });
+
+    }
+  });
+
+
+  $("#provincias").change(function () {
+    var url = $("#indexform").attr("data-city-url");
+    var departamentoid = $('#departamentos').val();
+    var provinciaid = $(this).val();
+    console.log('provincia seleccionada: ', provinciaid)
+    console.log('url: ', url)
+    $.ajax({
+      url: url,
+      data: {
+        'departamentoid': departamentoid,
+        'provinciaid': provinciaid
+      },
+      success: function (data) {
+        console.log(data)
+        $('#ciudades').html(data);
+      }
+    });
+  });
+
+  
+
+</script>
+{% endlocalize %}
+{% endblock %}

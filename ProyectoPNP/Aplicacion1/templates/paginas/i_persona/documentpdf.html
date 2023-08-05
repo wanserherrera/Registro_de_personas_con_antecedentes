@@ -1,0 +1,27 @@
+
+    <h1>Reporte de personas</h1>
+    <table id="customers"  class="table table-dark">
+      <thead>
+        <th scope="col">Nuermo Doc</th>
+        <th scope="col">Apellido paterno</th>
+        <th scope="col">Apellido materno</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Departamento</th>
+        <th scope="col">Provincia</th>
+        <th scope="col">Distrito</th>
+      </thead>
+      <tbody>    
+        {% for persona in personas %}
+          <tr>
+            <th  scope="row">{{ persona.nrodoc}}</th>
+            <td>{{ persona.apepaterno}}</td>
+            <td>{{ persona.apematerno}}</td>
+            <td>{{ persona.nombres}}</td>
+            <td>{{ persona.idubigeo.departamento}}</td>
+            <td>{{ persona.idubigeo.provincia}}</td>
+            <td>{{ persona.idubigeo.distrito}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      
+    </table>
